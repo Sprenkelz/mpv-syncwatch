@@ -4,7 +4,7 @@ Synchronize video playback between your friends. Inspired by the browser extensi
 
 ## Installation
 
-This plugin is compatible with Windows. Place syncwatch.dll into your scripts folder. Create a config file named `syncwatch.toml` with the info below.
+This plugin is compatible with Windows. Place syncwatch.dll into your scripts folder. Create a config file named `syncwatch.toml` with the info below and place it in your `portable_config` folder.
 ```toml
 enable_on_start = true
 server_url = "wss://server.syncwatch.space"
@@ -12,6 +12,10 @@ name = ""
 room_name = ""
 ```
 I personally use and have tested this plugin with [mpv-hero](https://github.com/stax76/mpv-hero).
+
+## Usage
+
+Choose a name and have your friends connect to the same room and the plugin will automatically sync your playback every time someone pauses/plays.
 
 ## Known issues
 
