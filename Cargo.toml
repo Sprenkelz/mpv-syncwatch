@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 anyhow = "1.0.99"
 env_logger = "0.11.8"
 log = "0.4.27"
-mpv-client-dyn = "0.5.0"
+mpv-client-dyn = { path = "mpv-client-dyn" }
 rust_socketio = "0.6.0"
 serde = { version="1.0.219", features = ["derive"] }
 serde_json = "1.0.143"

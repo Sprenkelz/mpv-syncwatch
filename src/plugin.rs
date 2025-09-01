@@ -204,31 +204,19 @@ impl Plugin {
             return Ok(());
         };
 
-        if is_paused {
-            let event = RoomEvent::new(
-                self.config.room_name.clone(),
-                MediaPlayerEvent::Pause,
-                0,
-                current_time,
-                0.0,
-            );
+        let event_type = if is_paused { MediaPlayerEvent::Pause } else { MediaPlayerEvent::Play };
 
-            log::trace!("Emitting pause event: {:?}", event);
+        let event = RoomEvent::new(
+            self.config.room_name.clone(),
+            event_type.clone(),
+            0,
+            current_time,
+            0.0,
+        );
 
-            socket.emit("message", serde_json::to_value(event)?)?;
-        } else {
-            let event = RoomEvent::new(
-                self.config.room_name.clone(),
-                MediaPlayerEvent::Play,
-                0,
-                current_time,
-                0.0,
-            );
+        log::trace!("Emitting {:?} event: {:?}", event_type, event);
 
-            log::trace!("Emitting play event: {:?}", event);
-
-            socket.emit("message", serde_json::to_value(event)?)?;
-        }
+        socket.emit("message", serde_json::to_value(event)?)?;
 
         Ok(())
     }

@@ -1,6 +1,6 @@
 use serde::{Serialize, Deserialize};
 
-const CONFIG_PATH: &str = "portable_config/syncwatch.toml";
+const CONFIG_NAME: &str = "syncwatch.toml";
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Config {
@@ -12,9 +12,18 @@ pub struct Config {
 
 impl Config {
     pub fn get() -> Option<Self> {
-        let path = std::env::current_exe()
-            .ok()
-            .and_then(|exe_path| exe_path.parent().map(|parent| parent.join(CONFIG_PATH)))?;
+        #[cfg(windows)]
+        let path = {
+            let executable_path = std::env::current_exe().ok()?;
+            executable_path.parent()?.join("portable_config").join(CONFIG_NAME)
+        };
+        #[cfg(unix)]
+        let path = {
+            let home = std::env::home_dir()?;
+            home.join(".config").join("mpv").join(CONFIG_NAME)
+        };
+
+        log::trace!("Looking for config file at: {:?}", path);
 
         let contents = match std::fs::read_to_string(&path) {
             Ok(c) => c,

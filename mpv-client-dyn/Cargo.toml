@@ -1,0 +1,15 @@
+[package]
+name = "mpv-client-dyn"
+version = "0.5.0"
+edition = "2021"
+authors = ["Kevin Gavrois <kevin@gavrois.fr>", "snylonue"]
+description = "Bindings for libmpv client API that allow you to create plugins for MPV in Rust"
+license = "GPL-3.0"
+repository = "https://github.com/TheCactusVert/mpv-client"
+keywords = ["mpv", "libmpv"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libloading = "0.8.1"
+once_cell = "1.18.0"
