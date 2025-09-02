@@ -4,7 +4,6 @@ Synchronize video playback between your friends. Inspired by the browser extensi
 
 ## Installation
 
-
 ### Windows
 
 - Place syncwatch.dll into your scripts folder, mine is in `<MPV_FOLDER>/portable_config/scripts`
@@ -13,7 +12,7 @@ Synchronize video playback between your friends. Inspired by the browser extensi
 ### Linux
 
 - Place libsyncwatch.so into your scripts folder, usually located in `~/.config/mpv/scripts`
-- Create a config file called `syncwatch.toml` in `~/.config/mpv/scripts` and fill it out with the values below
+- Create a config file called `syncwatch.toml` in `~/.config/mpv` and fill it out with the values below
 
 ### Config
 
