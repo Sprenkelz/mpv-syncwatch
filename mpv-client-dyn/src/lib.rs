@@ -206,13 +206,7 @@ impl Handle {
     /// As long as the timeout is 0, this is safe to be called from mpv render API
     /// threads.
     pub fn wait_event(&mut self, timeout: f64) -> Event {
-        let event_ptr = unsafe { mpv_wait_event(self.as_mut_ptr(), timeout) };
-
-        if self.get_property("idle-active").unwrap() { 
-            return Event::None;
-        }
-
-        unsafe { Event::from_ptr(event_ptr) }
+        unsafe { Event::from_ptr(mpv_wait_event(self.as_mut_ptr(), timeout)) }
     }
 
     /// Return the name of this client handle. Every client has its own unique

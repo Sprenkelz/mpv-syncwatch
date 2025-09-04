@@ -126,6 +126,10 @@ pub enum mpv_event_id {
     START_FILE = 6,
     END_FILE = 7,
     FILE_LOADED = 8,
+    // Deprecated
+    IDLE = 11,
+    // Deprecated
+    TICK = 14,
     CLIENT_MESSAGE = 16,
     VIDEO_RECONFIG = 17,
     AUDIO_RECONFIG = 18,

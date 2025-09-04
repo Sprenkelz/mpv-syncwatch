@@ -114,6 +114,11 @@ impl Plugin {
     fn handle_message_static(handle: &mut Handle, payload: Payload, pause_counter: &Arc<Mutex<u32>>) {
         log::trace!("Received payload: {:?}", payload);
 
+        if handle.get_property("idle-active").unwrap_or(true) {
+            log::trace!("Ignoring message while idle");
+            return;
+        }
+
         let Payload::Text(payload) = payload else {
             log::warn!("Received non-text payload");
             return;
@@ -180,6 +185,11 @@ impl Plugin {
     }
 
     fn handle_pause_unpause(&mut self, property: Property) -> Result<()> {
+        if self.get_property("idle-active")? {
+            log::trace!("Ignoring pause/unpause event while idle");
+            return Ok(());
+        }
+
         let Some(is_paused) = property.data::<bool>() else {
             log::warn!("Pause property change with non-bool data");
             return Ok(());
